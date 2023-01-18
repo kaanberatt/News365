@@ -6,18 +6,26 @@
 {
     @foreach (var item in Model)
     {
-        <div class="col mb-5">
-            <a asp-controller="News" asp-action="Item" asp-route-slugurl="@item.SlugUrl" asp-route-productid="@item.Id" class="mahsullar-card">
-                <div class="mahsullar-body">
-                    <div class="mahsullar-card-image">
-                        <img src="@await Component.InvokeAsync("Image", new { FileCode = item.FileCode  })" alt="">
-                    </div>
-                    <p class="mahsul-name">@item.Title</p>
+        <div class="col-lg-6 col-md-6">
+            <div class="single-what-news mb-100">
+                <div class="what-img">
+                    <img style="width:contain;height:contain;" src="@await Component.InvokeAsync("Image", new { FileCode = item.FileCode })" alt="">
                 </div>
-                <span class="mahsul-arrow">
-                    <i class="bi bi-chevron-right"></i>
-                </span>
-            </a>
+                <div class="what-cap">
+                    <span class="color1">@item.Title</span>
+
+                    @if (item.Body.Length > 100)
+                    {
+                        <h5><a asp-controller="News" asp-action="Item" asp-route-newsid="@item.Id">@item.Body.Substring(0,item.Body.Substring(0,80).LastIndexOf(" ")) (devamını oku...)</a></h5>
+
+                    }
+                    else
+                    {
+                        <h5><a asp-controller="News" asp-action="Item" asp-route-newsid="@item.Id">@item.Body</a></h5>
+                    }
+
+                </div>
+            </div>
         </div>
     }
 }

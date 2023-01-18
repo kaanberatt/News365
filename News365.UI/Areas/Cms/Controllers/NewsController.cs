@@ -53,7 +53,7 @@ public class NewsController : Controller
                     Title = newsVM.NewsModel.Title,
                     Body = newsVM.NewsModel.Body,
                     FileCode = FileCode.Data,
-                    CategoryId = newsVM.NewsModel.CategoryId,
+                    CategoryId = newsVM.CategoryId,
                     SlugUrl = UrlSeoHelper.UrlSeo(newsVM.NewsModel.SlugUrl),
                     
                 });
@@ -90,7 +90,7 @@ public class NewsController : Controller
             newsVM.NewsModel.SlugUrl = UrlSeoHelper.UrlSeo(newsVM.NewsModel.SlugUrl);
             newsVM.NewsModel.Title = (newsVM.NewsModel.Title);
             newsVM.NewsModel.Body = (newsVM.NewsModel.Body);
-            newsVM.NewsModel.CategoryId = (newsVM.NewsModel.CategoryId);
+            newsVM.NewsModel.CategoryId = (newsVM.CategoryId);
             newsVM.NewsModel.FileCode = (newsVM.NewsModel.FileCode);
             var newsUpdate = await _newsService.UpdateAsync(newsVM.NewsModel);
             if (newsUpdate.Success)

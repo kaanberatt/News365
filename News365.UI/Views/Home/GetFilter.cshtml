@@ -1,0 +1,31 @@
+﻿@inject IConfiguration _configuration
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<NewsModel>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-6 col-md-6">
+            <div class="single-what-news mb-100">
+                <div class="what-img">
+                    <img style="width:contain;height:contain;" src="@await Component.InvokeAsync("Image", new { FileCode = item.FileCode })" alt="">
+                </div>
+                <div class="what-cap">
+                    <span class="color1">@item.Title</span>
+
+                    @if (item.Body.Length > 100)
+                    {
+                        <h5><a asp-controller="News" asp-action="Item" asp-route-newsid="@item.Id">@item.Body.Substring(0,item.Body.Substring(0,80).LastIndexOf(" ")) (devamını oku...)</a></h5>
+
+                    }
+                    else
+                    {
+                        <h5><a asp-controller="News" asp-action="Item" asp-route-newsid="@item.Id">@item.Body</a></h5>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+}

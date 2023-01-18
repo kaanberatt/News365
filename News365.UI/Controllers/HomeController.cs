@@ -26,9 +26,8 @@ public class HomeController : Controller
     }
 
     [Route("/")]
-    [Route("/{_lang}")]
-    [Route("/{_lang}/homepage")]
-    public async Task<IActionResult> Login(string _lang = "tr")
+    [Route("/homepage")]
+    public async Task<IActionResult> Index(string _lang = "tr")
     {
         if (HttpContext.Session.GetString("lang") != null)
         {
@@ -46,5 +45,40 @@ public class HomeController : Controller
             Sliders = sliders.Data,
         };
         return View(pageVM);
+    }
+    // public async Task<PartialViewResult> GetNewsByCategory(int categoryId)
+    // {
+    //     if (categoryId != null)
+    //     {
+    //         var news = (await _newsService.GetNewsListAsync()).Data;
+
+    //         NewsPageVM pageVM = new NewsPageVM()
+    //         {
+    //             Category = news.FirstOrDefault().Category,
+    //             News = news.Where(x => x.CategoryId == categoryId == true).ToList()
+    //         };
+    //         return PartialView(pageVM);
+    //     }
+    //     return PartialView();
+    // } 
+
+    [Route("/newsfiltered")]
+    public async Task<PartialViewResult> GetFilter(Guid category)
+    {
+        try
+        { 
+            var news = (await _newsService.GetNewsListAsync()).Data;
+
+            if (category !=null)
+            {                
+                news = news.Where(x => x.CategoryId==category).ToList();
+            }
+            return PartialView(news);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return null;
+        } 
     }
 }

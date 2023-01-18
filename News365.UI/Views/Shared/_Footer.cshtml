@@ -8,44 +8,86 @@
 }
 
 <footer>
-    <div class="container">
-        <div class="footer-main w-100 text-center  flex-column justify-content-center align-items-center">
-            @* <div class="footer-logo d-block mx-auto position-relative">
-                <img src="@await Component.InvokeAsync("Image", new { FileCode = configs.Data.FileCode })" alt="">
-            </div> *@
-            <ul class="d-lg-flex justify-content-center mt-3 menu-footer-list align-items-center">
-                <li class="mt-2 mt-lg-0 me-0 me-lg-4 menu-footer-item">
-                    <a asp-controller="Home" asp-action="Index" asp-route-_lang="@_lang">
-                        @_configuration[$"HOME:{_lang}"]
-                    </a>
-                </li>
-                <li class="mt-2 mt-lg-0 me-0 me-lg-4 menu-footer-item">
-                    <a asp-controller="About" asp-action="Index" asp-route-_lang="@_lang">
-                        @_configuration[$"ABOUT:{_lang}"]
-                    </a>
-                </li>
-                <li class="mt-2 mt-lg-0 me-0 me-lg-4 menu-footer-item dropdown">
-                    <a class="btn btn-footer-down" type="button" id="NewsFooter"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        @_configuration[$"NEWS:{_lang}"]
-                    </a>
-            
-        </div>
-        <div class="footer-alt d-flex justify-content-between align-items-center mt-3 pb-3">
-            <p class="footer-copright">Copyright @DateTime.Now.Year, Apollo. All right reserved</p>
-            <div class="dropdown">
-                <button class="btn footer-lang" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="bi bi-globe2"></i>
-                    <span class="position-relative">@_lang.ToUpper()</span>
-                </button>
-                <ul class="dropdown-menu js-down" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" asp-controller="Language" asp-action="Change" asp-route-_lang="tr" asp-route-slugurl="@url" type="button">TR</a></li>
-                    <li><a class="dropdown-item" asp-controller="Language" asp-action="Change" asp-route-_lang="en" asp-route-slugurl="@url" type="button">EN</a></li>
-                    <li><a class="dropdown-item" asp-controller="Language" asp-action="Change" asp-route-_lang="ru" asp-route-slugurl="@url" type="button">RU</a></li>
-                </ul>
+    <!-- Footer Start-->
+    <div class="footer-area footer-padding fix">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12">
+                    <div class="single-footer-caption">
+                        <div class="single-footer-caption">
+                            <!-- logo -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="~/assets/img/logo/logo2_footer.png" alt=""></a>
+                            </div>
+                            <div class="footer-tittle">
+                                <div class="footer-pera">
+                                    <p>Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales  Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales  Suscipit mauris pede for sectetuer.</p>
+                                </div>
+                            </div>
+                            <!-- social -->
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-7  col-sm-12">
+                    <div class="single-footer-caption mt-60">
+                        <div class="footer-tittle">
+                            <h4>Bültene Kayıt Ol, Haberleri Yakala!</h4>
+                            <p>Haber bültenimize kayıt olun, en güncel haberleri anında alın.</p>
+                            <!-- Form -->
+                            <div class="footer-form">
+                                <div id="mc_embed_signup">
+                                    <form target="_blank" action="#"
+                                          method="get" class="subscribe_form relative mail_part">
+                                        <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                               class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = ' Email Address '">
+                                        <div class="form-icon">
+                                            <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm">
+                                                <img src="~/assets/img/logo/form-iocn.png" alt="">
+                                            </button>
+                                        </div>
+                                        <div class="mt-10 info"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
+    <!-- footer-bottom aera -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex align-items-center justify-content-between">
+                    <div class="col-lg-6">
+                        <div class="footer-copy-right">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer-menu f-right">
+                            <ul>
+                                <li><a href="#">Terms of use</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End-->
 </footer>

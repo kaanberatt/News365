@@ -6,4 +6,5 @@ public class NewsVM
 {
    public NewsModel NewsModel { get; set; }
    public List<Category> Categories { get; set; }
+   public Guid CategoryId { get; set; }
 }

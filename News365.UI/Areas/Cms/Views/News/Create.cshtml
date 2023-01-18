@@ -44,12 +44,12 @@
                     <div class="card-header">Fixed Fields</div>
                     <div class="card-body">
                         <div class="form-group mb-3">
-                            <label class="form-label" asp-for="NewsModel.CategoryId">Category</label>
-                            <select class="form-select" asp-for="NewsModel.CategoryId">
+                            <label class="form-label" asp-for="CategoryId">Category</label>
+                            <select class="form-select" asp-for="CategoryId">
                                 <option value="" selected>Select</option>
                                 @foreach (var item in Model.Categories)
                                 {
-                                    <option value="@item.Id">@item.Name</option>
+                                    <option asp-for="NewsVM.CategoryId" value="@item.Id">@item.Name</option>
                                     
                                 }
                             </select>

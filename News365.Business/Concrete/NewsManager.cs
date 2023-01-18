@@ -30,7 +30,7 @@ public class NewsManager : INewsService
 
     public  async Task<IDataResult<List<NewsModel>>> GetNewsListAsync()
     {
-        var resultList = await _newsDal.GetListAsync();
+        var resultList = await _newsDal.GetListAsync(null,null,x=>x.Category);
         return new SuccessDataResult<List<NewsModel>>(resultList.ToList());
     }
 

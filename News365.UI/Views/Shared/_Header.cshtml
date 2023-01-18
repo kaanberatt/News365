@@ -8,60 +8,74 @@
 }
 
 <header>
-    <nav id="navs" class="navbar navbar-expand-lg p-0 m-0 flex-column">
-        <div class="container">
-            <div class="navbar-main w-100 d-flex align-items-center justify-content-between position-relative">
-                @* <a class="navbar-brand d-block p-0 m-0" asp-controller="Home" asp-action="Index" asp-route-_lang="@_lang">
-                    <img src="@await Component.InvokeAsync("Image", new { FileCode = configs.Data.FileCode })" alt="navbarlogo">
-                </a> *@
-                <div class="navbar-collapse flex-grow-0">
-                    <ul class="navbar-nav w-100 h-100  align-items-center justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center" asp-controller="Home" asp-action="Index">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center" asp-controller="About" asp-action="Index">
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown mahsullar">
-                            <span class="nav-link d-flex align-items-center" id="newsdown">
-                                @_configuration[$"NEWS"]
-                                <i class="bi bi-chevron-down arrow"></i>
-                            </span>
-                            <ul class="dropdown-menu w-100 ">
-                                @foreach (var item in newsCategories)
-                                {
-                                    <li><a class="dropdown-item" asp-controller="News" asp-action="Index"  
-                                    asp-route-categoryName="@item.SlugUrl" asp-route-categoryId="@item.Id">@item.Name</a></li>
-                                }
-                            </ul>
-                        </li>
-                         @* <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center" asp-controller="Advertising" asp-action="Index" asp-route-_lang="@_lang">
-                                @_configuration[$"ADS:{_lang}"]
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center" asp-controller="Contact" asp-action="Index" asp-route-_lang="@_lang">
-                                @_configuration[$"CONTACTUS:{_lang}"]
-                            </a>
-                        </li> *@
-                    </ul>
+    <!-- Header Start -->
+    <div class="header-area">
+        <div class="main-header ">
+            <div class="header-top black-bg d-none d-md-block">
+                <div class="container">
+                    <div class="col-xl-12">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="header-info-left">
+                                <ul>
+                                    <li><img src="~/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
+                                    <li><img src="~/assets/img/icon/header_icon1.png" alt="">@DateTime.Now</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @* <div class="dropdown down-lang position-relative">
-                    <span class="lang-link d-block">
-                        <i class="bi bi-globe2"></i>
-                        <span class="position-relative">ToUpper()</span>
-                    </span>
-                    <ul class="dropdown-menu js-down lang-downs">
-                        <li class="dropdown-item lang-items"><a asp-controller="Language" asp-action="Change" asp-route-_lang="tr" asp-route-slugurl="@url" type="button">TR</a></li>
-                        <li class="dropdown-item lang-items"><a asp-controller="Language" asp-action="Change" asp-route-_lang="ru" asp-route-slugurl="@url" type="button">RU</a> </li>
-                        <li class="dropdown-item lang-items"><a asp-controller="Language" asp-action="Change" asp-route-_lang="en" asp-route-slugurl="@url" type="button">EN</a> </li>
-                    </ul>
-                </div> *@
-                <button type="button" class="btn navicon d-none"></button>
+            </div>
+            <div class="header-mid d-none d-md-block">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-3 col-lg-3 col-md-3">
+                            <div class="logo">
+                                <a asp-action="Index" asp-controller="Home"><img src="~/assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
+                            <!-- sticky -->
+                            <div class="sticky-logo">
+                                <a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                            <!-- Main-menu -->
+                            <div class="main-menu d-none d-md-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                                        <li><a href="#">Hakkımızda</a></li>
+                                        <li><a asp-controller="Home" asp-action="Index">Haberler</a></li>
+                                        <li><a href="#">İletişim</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4">
+                            <div class="header-right-btn f-right d-none d-lg-block">
+                                <i class="fas fa-search special-tag"></i>
+                                <div class="search-box">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-md-none"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+    <!-- Header End -->
 </header>

@@ -1,0 +1,169 @@
+﻿@inject IConfiguration _configuration
+@model MainVM
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+}
+
+    <div class="weekly-news-area pt-50">
+        <div class="container">
+            <div class="weekly-wrapper">
+                <!-- section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle mb-30">
+                            <h3>Haftanın Haberleri</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="weekly-news-active dot-style d-flex dot-style">
+                        @foreach (var item in Model.Sliders)
+                        {
+                            <div class="weekly-single">
+                                <div class="weekly-img">
+                                    <img src="@await Component.InvokeAsync("Image", new { FileCode = item.FileCode })" alt="">
+                                </div>
+                                <div class="weekly-caption">
+                                    <span class="color1">@item.Title</span>
+                                    <h4><a href="#">@item.Description</a></h4>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="whats-news-area pt-50 pb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="section-tittle mb-30">
+                            <h3>News-365 Güncel Haberler</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="properties__button">
+                            <!--Nav Button  -->
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tümü</a>
+
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        
+                                        <button onclick="filterNews(this)" data-filter="@item.Id" class="nav-item nav-link" id="nav-profile-tab">@item.Name</button>
+
+                                    }
+
+                                </div>
+                            </nav>
+                            <!--End Nav Button  -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Nav Card -->
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- card one -->
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="whats-news-caption" id="newsList">
+                                    @{ await Html.RenderPartialAsync("_NewsList", Model.News); }
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Nav Card -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Section Tittle -->
+                <div class="section-tittle mb-40">
+                    <h3>Sosyal Medyada Biz</h3>
+                </div>
+                <!-- Flow Socail -->
+                <div class="single-follow mb-45">
+                    <div class="single-box">
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="assets/img/news/icon-fb.png" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="assets/img/news/icon-tw.png" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="assets/img/news/icon-ins.png" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                        <div class="follow-us d-flex align-items-center">
+                            <div class="follow-social">
+                                <a href="#"><img src="assets/img/news/icon-yo.png" alt=""></a>
+                            </div>
+                            <div class="follow-count">
+                                <span>8,045</span>
+                                <p>Fans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Poster -->
+                <div class="news-poster d-none d-lg-block">
+                    <img src="assets/img/news/news_card.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>    
+        function filterNews(element)
+        {
+            var newsName = element.getAttribute("data-filter");
+            $('#newsList').html('');
+            $.ajax({
+                url: 'newsfiltered',
+                data: {category: newsName},
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    var tetikle = setInterval(function () {
+                        $('#newsList').append(data);                        
+                        clearInterval(tetikle);
+                    }, 1900);                     
+                }                
+            });
+        }
+
+        
+
+    </script>
+
+}
