@@ -8,16 +8,18 @@ public class News365DbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        const string ConnetDeveloper = "Server=localhost;Port=3306;Database=News365Db;User=root;password=21085454;Charset=utf8;";
+        // const string ConnetDeveloper = "Server=localhost;Port=3306;Database=News365Db;User=root;password=21085454;Charset=utf8;";
+        const string ConnetDeveloper = "User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=News365Db;";
 
         //const string ConnetDeveloper = "server=localhost ;port=3306;database=News365Db;user=root;password=0987654321;Charset=utf8;";
-        optionsBuilder.UseLazyLoadingProxies()
-            .UseMySql(ConnetDeveloper, ServerVersion.AutoDetect(ConnetDeveloper))
-            .EnableSensitiveDataLogging()
-            .ConfigureWarnings(warnings =>
-            {
-                warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning);
-            });
+        optionsBuilder.UseNpgsql(ConnetDeveloper);
+        // optionsBuilder.UseLazyLoadingProxies()
+        //     .UseMySql(ConnetDeveloper, ServerVersion.AutoDetect(ConnetDeveloper))
+        //     .EnableSensitiveDataLogging()
+        //     .ConfigureWarnings(warnings =>
+        //     {
+        //         warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning);
+        //     });
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
