@@ -16,18 +16,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="weekly-news-active dot-style d-flex dot-style">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="weekly-news-active dot-style d-flex dot-style">
                         @foreach (var item in Model.Sliders)
                         {
                             <div class="weekly-single">
                                 <div class="weekly-img">
+
                                     <img src="@await Component.InvokeAsync("Image", new { FileCode = item.FileCode })" alt="">
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">@item.Title</span>
-                                    <h4><a href="#">@item.Description</a></h4>
+                                    <h4><a>@item.Description</a></h4>
                                 </div>
                             </div>
 
@@ -58,7 +60,7 @@
 
                                     @foreach (var item in Model.Categories)
                                     {
-                                        
+
                                         <button onclick="filterNews(this)" data-filter="@item.Id" class="nav-item nav-link" id="nav-profile-tab">@item.Name</button>
 
                                     }
@@ -76,8 +78,10 @@
                             <!-- card one -->
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <div class="whats-news-caption" id="newsList">
-                                    @{ await Html.RenderPartialAsync("_NewsList", Model.News); }
-                                    
+                                    @{
+                                        await Html.RenderPartialAsync("_NewsList", Model.News);
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -143,26 +147,25 @@
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>    
-        function filterNews(element)
-        {
+    <script>
+        function filterNews(element) {
             var newsName = element.getAttribute("data-filter");
             $('#newsList').html('');
             $.ajax({
                 url: 'newsfiltered',
-                data: {category: newsName},
+                data: { category: newsName },
                 type: 'GET',
                 dataType: 'html',
                 success: function (data) {
                     var tetikle = setInterval(function () {
-                        $('#newsList').append(data);                        
+                        $('#newsList').append(data);
                         clearInterval(tetikle);
-                    }, 1900);                     
-                }                
+                    }, 1900);
+                }
             });
         }
 
-        
+
 
     </script>
 

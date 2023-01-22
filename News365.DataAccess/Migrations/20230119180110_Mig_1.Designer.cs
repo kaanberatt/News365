@@ -5,36 +5,33 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using News365.DataAccess.Concrete.Context;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace News365.DataAccess.Migrations
 {
     [DbContext(typeof(News365DbContext))]
-    [Migration("20230118161424_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230119180110_Mig_1")]
+    partial class Mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.12")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("News365.Entities.Concrete.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("SlugUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -44,31 +41,31 @@ namespace News365.DataAccess.Migrations
             modelBuilder.Entity("News365.Entities.Concrete.Document", b =>
                 {
                     b.Property<string>("DocumentUnique")
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(95)");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DocumentFolderName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DocumentName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DocumentSize")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DocumentType")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Image_Url")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Storage_Url")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Video_Url")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("DocumentUnique");
 
@@ -79,28 +76,28 @@ namespace News365.DataAccess.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Body")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("FileCode")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("SlugUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<Guid?>("categories")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -113,28 +110,28 @@ namespace News365.DataAccess.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FileCodeCenter")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FileCodeCenterLeft")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FileCodeCenterRight")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PageId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("SlugUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -145,22 +142,22 @@ namespace News365.DataAccess.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FileCode")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SliderId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("SlugUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -170,16 +167,16 @@ namespace News365.DataAccess.Migrations
             modelBuilder.Entity("News365.Entities.Concrete.User", b =>
                 {
                     b.Property<string>("FullName")
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(95)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Role")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("FullName");
 
